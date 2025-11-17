@@ -2,12 +2,16 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import AddRecipeForm from './components/AddRecipeForm';
 import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
+import SearchBar from './components/searchBar';
+
+
 
 function Home() {
   return (
     <div style={{ padding: 20 }}>
       <h1>Recipe Sharing App</h1>
       <AddRecipeForm />
+      <SearchBar />
       <RecipeList />
     </div>
   );
