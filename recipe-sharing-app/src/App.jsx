@@ -3,6 +3,8 @@ import AddRecipeForm from './components/AddRecipeForm';
 import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
 import SearchBar from './components/searchBar';
+import FavoritesList from './components/FavoritesList';
+import RecommendationsList from './components/RecommendationsList';
 
 
 
@@ -12,6 +14,8 @@ function Home() {
       <h1>Recipe Sharing App</h1>
       <AddRecipeForm />
       <SearchBar />
+      <RecommendationsList />
+      <FavoritesList />
       <RecipeList />
     </div>
   );
