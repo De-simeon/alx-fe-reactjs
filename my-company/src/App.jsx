@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./components/Home";
-import About from "./components/About";
-import Services from "./components/Services";
-import Contact from "./components/Contact";
+import Navbar from "../../recipe-sharing-app/recipe-sharing-app/src/components/Navbar";
+import Home from "../../recipe-sharing-app/recipe-sharing-app/src/components/Home";
+import About from "../../recipe-sharing-app/recipe-sharing-app/src/components/About";
+import Services from "../../recipe-sharing-app/recipe-sharing-app/src/components/Services";
+import Contact from "../../recipe-sharing-app/recipe-sharing-app/src/components/Contact";
 
 function App() {
   return (
