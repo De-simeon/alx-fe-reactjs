@@ -1,18 +1,18 @@
+import { useNavigate } from 'react-router-dom';
 import { useRecipeStore } from '../recipeStore';
 
-const DeleteRecipeButton = ({ recipeId, afterDelete }) => {
-  const deleteRecipe = useRecipeStore((s) => s.deleteRecipe);
+const DeleteRecipeButton = ({ recipeId }) => {
+  const deleteRecipe = useRecipeStore(state => state.deleteRecipe);
+  const navigate = useNavigate();
 
   const handleDelete = () => {
-    // confirm UX — minimal but necessary
-    if (!window.confirm('Delete this recipe?')) return;
     deleteRecipe(recipeId);
-    if (afterDelete) afterDelete();
+    navigate('/');
   };
 
   return (
-    <button onClick={handleDelete} style={{ background: 'transparent' }}>
-      Delete
+    <button onClick={handleDelete}>
+      Delete Recipe
     </button>
   );
 };
