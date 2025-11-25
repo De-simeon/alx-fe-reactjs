@@ -1,42 +1,10 @@
-import { apiKey } from "./services/githubApi"
-import { useState } from "react";
 import Search from "./components/Search";
-import { fetchUserData } from "./services/githubService";
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  const handleSearch = async (username) => {
-    setLoading(true);
-    setError("");
-    setUser(null);
-
-    try {
-      const data = await fetchUserData(username);
-      setUser(data);
-    } catch (err) {
-      setError("Looks like we cant find the user");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <div>
-      <Search onSearch={handleSearch} />
-
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-
-      {user && (
-        <div>
-          <img src={user.avatar_url} alt={user.login} width="120" />
-          <h2>{user.login}</h2>
-          <a href={user.html_url} target="_blank">View Profile</a>
-        </div>
-      )}
+      <h1>GitHub User Search</h1>
+      <Search />
     </div>
   );
 }
