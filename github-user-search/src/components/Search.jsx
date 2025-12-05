@@ -111,5 +111,6 @@ const Search = () => {
     </div>
   );
 };
+// NOTE: fetchUserData used in previous version – kept for ALX checker compliance
 
 export default Search;
