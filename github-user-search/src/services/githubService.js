@@ -4,11 +4,13 @@ const BASE_URL = "https://api.github.com/search/users?q=";
 
 export const fetchAdvancedUsers = async (username, location, minRepos, page = 1) => {
   try {
-    let query = "";
+    const parts = [];
 
-    if (username) query += `${username}+`;
-    if (location) query += `location:${location}+`;
-    if (minRepos) query += `repos:>=${minRepos}+`;
+    if (username) parts.push(username);
+    if (location) parts.push(`location:${location}`);
+    if (minRepos) parts.push(`repos:>=${minRepos}`);
+
+    const query = encodeURIComponent(parts.join(" "));
 
     const response = await axios.get(
       `${BASE_URL}${query}&page=${page}&per_page=10`,
