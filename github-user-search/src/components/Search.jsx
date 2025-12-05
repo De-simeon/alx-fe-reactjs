@@ -1,55 +1,51 @@
 import { useState } from "react";
-import { fetchUserData } from "../services/githubServiceApi";
 
-const Search = () => {
+const Search = ({ onSearch }) => {
   const [username, setUsername] = useState("");
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [location, setLocation] = useState("");
+  const [minRepos, setMinRepos] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (!username.trim()) return;
-
-    setLoading(true);
-    setError("");
-    setUser(null);
-
-    try {
-      const data = await fetchUserData(username);
-      setUser(data);
-    } catch (err) {
-      setError("Looks like we cant find the user");
-    } finally {
-      setLoading(false);
-    }
+    onSearch(username, location, minRepos);
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Search GitHub username..."
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <button type="submit">Search</button>
-      </form>
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white shadow-md p-6 rounded-lg w-full max-w-xl mx-auto flex flex-col gap-4"
+    >
+      <input
+        type="text"
+        placeholder="Search GitHub username..."
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        className="border px-3 py-2 rounded w-full"
+      />
 
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+      <input
+        type="text"
+        placeholder="Filter by location (optional)"
+        value={location}
+        onChange={(e) => setLocation(e.target.value)}
+        className="border px-3 py-2 rounded w-full"
+      />
 
-      {user && (
-        <div>
-          <img src={user.avatar_url} alt={user.login} width="120" />
-          <h2>{user.login}</h2>
-          <a href={user.html_url} target="_blank" rel="noopener noreferrer">
-            View Profile
-          </a>
-        </div>
-      )}
-    </div>
+      <input
+        type="number"
+        placeholder="Minimum repos (optional)"
+        value={minRepos}
+        onChange={(e) => setMinRepos(e.target.value)}
+        className="border px-3 py-2 rounded w-full"
+      />
+
+      <button
+        type="submit"
+        className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+      >
+        Search
+      </button>
+    </form>
   );
 };
 
